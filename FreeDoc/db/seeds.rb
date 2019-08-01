@@ -10,8 +10,10 @@
 require 'faker'
 100.times do
 
-	patient_list = Patient.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-	doctor_list = Doctor.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name ,specialty: Faker::Name.first_name, zip_code: Faker::Address.zip_code)
-	appointment_list =Appointment.create!(date: Faker::Date.forward, doctor: doctor_list, patient: patient_list)
+	city_list = City.create!(name: Faker::Address.city)
+	patient_list = Patient.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, city:city_list)
+	doctor_list = Doctor.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name ,specialty: Faker::Name.first_name, zip_code: Faker::Address.zip_code, city:city_list)
+	appointment_list = Appointment.create!(date: Faker::Date.forward, doctor: doctor_list, patient: patient_list, city:city_list)
+	
 
 end
